@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InnovateTech Solutions - Leading technology company providing innovative web development, mobile apps, and consulting services">
+    <meta name="keywords" content="technology, web development, mobile apps, consulting, innovation">
+    <meta name="author" content="InnovateTech Solutions">
+    <meta property="og:title" content="InnovateTech Solutions - Innovation at Your Fingertips">
+    <meta property="og:description" content="Transform your business with cutting-edge technology solutions">
+    <meta property="og:type" content="website">
+    <title>InnovateTech Solutions - Innovation at Your Fingertips</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <style>
+        /* ==========================================================================
+           CSS Reset & Base Styles
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==========================================================================
+           Layout Components
+           ========================================================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .page-grid {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+            background: white;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* ==========================================================================
+           Navigation
+           ========================================================================== */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .logo::before {
+            content: "🚀";
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* ==========================================================================
+           Page Sections
+           ========================================================================== */
+        main {
+            flex: 1;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"><animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"><animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite" begin="1s"/></circle><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="2s"/></circle></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .services {
+            padding: 6rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .about-preview {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission, .vision {
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .mission h3, .vision h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stats h3 {
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .stats dl {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .stats dt {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats dd {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* ==========================================================================
+           Footer
+           ========================================================================== */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 1rem;
+            text-align: center;
+            color: #95a5a6;
+        }
+
+        /* ==========================================================================
+           Forms
+           ========================================================================== */
+        .contact-page {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h3 {
+            color: #667eea;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info address {
+            font-style: normal;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .office-hours {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .office-hours th,
+        .office-hours td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .office-hours th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-fieldset {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-fieldset legend {
+            padding: 0 1rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group input:required:valid {
+            border-color: #28a745;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .range-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn-reset {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #5a6268;
+        }
+
+        /* ==========================================================================
+           About & Team Pages
+           ========================================================================== */
+        .page-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .timeline ol {
+            list-style: none;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline ol::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #667eea;
+        }
+
+        .timeline li {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 3rem;
+        }
+
+        .timeline li::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .timeline h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .values-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .value-item h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ==========================================================================
+           Responsive Design
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .radio-group,
+            .checkbox-group {
+                flex-direction: column;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation for page load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card,
+        .team-member,
+        .value-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-card:nth-child(2) { animation-delay: 0.1s; }
+        .service-card:nth-child(3) { animation-delay: 0.2s; }
+        .service-card:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="page-grid">
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">InnovateTech Solutions</div>
+                    <nav>
+                        <div class="mobile-menu" onclick="toggleMenu()">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <ul id="nav-menu">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about-page">About</a></li>
+                            <li><a href="#contact-page">Contact</a></li>
+                            <li><a href="#get-started" class="btn btn-primary">Get Started</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Homepage Content -->
+            <section id="home" class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Innovation at Your Fingertips</h1>
+                        <p>Transform your business with cutting-edge technology solutions. We deliver exceptional web development, mobile applications, and consulting services that drive growth and success.</p>
+                        <div class="hero-buttons">
+                            <a href="#get-started" class="btn btn-primary">Get Started Today</a>
+                            <a href="#services" class="btn btn-secondary">Explore Services</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="services" class="services">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Our Services</h2>
+                        <p>We provide comprehensive technology solutions tailored to your business needs</p>
+                    </div>
+                    <div class="services-grid">
+                        <article class="service-card">
+                            <span class="service-icon">💻</span>
+                            <h3>Web Development</h3>
+                            <p>Custom websites and web applications built with modern technologies. Responsive, fast, and user-friendly solutions that engage your audience.</p>
+                            <a href="#learn-more" class="btn btn-primary">Learn More</a>
+                        </article>
+                        <article class="service-card">
+                            <span class="service-icon">📱</span>
+                            <h3>Mobile Applications</h3>
+                            <p>Native and cross-platform mobile apps for iOS and Android. Intuitive interfaces with powerful functionality to reach your customers anywhere.</p>
+                            <a href="#learn-more" class="btn btn-primary">Learn More</a>
+                        </article>
+                        <article class="service-card">
+                            <span class="service-icon">🎯</span>
+                            <h3>Digital Strategy</h3>
+                            <p>Comprehensive digital transformation consulting. We help you leverage technology to optimize processes and achieve your business goals.</p>
+                            <a href="#learn-more" class="btn btn-primary">Learn More</a>
+                        </article>
+                        <article class="service-card">
+                            <span class="service-icon">☁️</span>
+                            <h3>Cloud Solutions</h3>
+                            <p>Scalable cloud infrastructure and migration services. Secure, reliable, and cost-effective solutions for modern businesses.</p>
+                            <a href="#learn-more" class="btn btn-primary">Learn More</a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-preview">
+                <div class="container">
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h2>About InnovateTech Solutions</h2>
+                            <p>Founded in 2018, InnovateTech Solutions has been at the forefront of digital innovation, helping businesses transform their operations through cutting-edge technology. Our team of experienced developers, designers, and strategists work collaboratively to deliver solutions that exceed expectations.</p>
+                            <p>We believe that technology should be accessible, intuitive, and powerful. Our approach combines technical expertise with creative problem-solving to create digital experiences that drive real business results. From startups to enterprise organizations, we've helped hundreds of clients achieve their digital goals.</p>
+                            <p>Our commitment to excellence, continuous learning, and client satisfaction has made us a trusted partner in the technology landscape. We don't just build software – we build lasting relationships and sustainable success.</p>
+                            
+                            <div class="mission-vision">
+                                <div class="mission">
+                                    <h3>Our Mission</h3>
+                                    <p>To empower businesses through innovative technology solutions that drive growth, efficiency, and competitive advantage in the digital age.</p>
+                                </div>
+                                <div class="vision">
+                                    <h3>Our Vision</h3>
+                                    <p>To be the leading technology partner that transforms ideas into reality, creating a more connected and efficient world.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="stats">
+                            <h3>Our Achievements</h3>
+                            <dl>
+                                <dt>500+</dt>
+                                <dd>Projects Completed</dd>
+                                <dt>98%</dt>
+                                <dd>Client Satisfaction</dd>
+                                <dt>50+</dt>
+                                <dd>Team Members</dd>
+                                <dt>6</dt>
+                                <dd>Years of Excellence</dd>
+                            </dl>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Page Content -->
+            <section id="about-page" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <div class="container">
+                        <h1>About Us</h1>
+                        <p>Discover our journey, meet our team, and learn about our values</p>
+                    </div>
+                </div>
+
+                <section class="timeline">
+                    <div class="container">
+                        <div class="section-title">
+                            <h2>Our Journey</h2>
+                            <p>From a small startup to a leading technology company</p>
+                        </div>
+                        <ol>
+                            <li>
+                                <h3>2018 - The Beginning</h3>
+                                <p>InnovateTech Solutions was founded by three passionate developers with a vision to make technology accessible to all businesses.</p>
+                            </li>
+                            <li>
+                                <h3>2019 - First Major Client</h3>
+                                <p>Secured our first enterprise client and delivered a comprehensive e-commerce platform that increased their sales by 300%.</p>
+                            </li>
+                            <li>
+                                <h3>2020 - Team Expansion</h3>
+                                <p>Grew our team to 15 members and opened our first dedicated office space. Launched our mobile app development division.</p>
+                            </li>
+                            <li>
+                                <h3>2021 - Cloud Expertise</h3>
+                                <p>Became certified cloud solution providers and helped 50+ businesses migrate to cloud infrastructure during the pandemic.</p>
+                            </li>
+                            <li>
+                                <h3>2022 - Innovation Award</h3>
+                                <p>Received the "Technology Innovation Award" for our AI-powered business analytics platform.</p>
+                            </li>
+                            <li>
+                                <h3>2024 - Global Reach</h3>
+                                <p>Expanded internationally with offices in three countries and a team of 50+ professionals serving clients worldwide.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section class="team-section">
+                    <div class="container">
+                        <div class="section-title">
+                            <h2>Meet Our Team</h2>
+                            <p>The talented individuals behind our success</p>
+                        </div>
+                        <div class="team-grid">
+                            <article class="team-member">
+                                <div class="team-photo">👨‍💼</div>
+                                <h3>Alex Johnson</h3>
+                                <p><strong>CEO & Co-Founder</strong></p>
+                                <p>Visionary leader with 15+ years in technology. Passionate about innovation and client success.</p>
+                            </article>
+                            <article class="team-member">
+                                <div class="team-photo">👩‍💻</div>
+                                <h3>Sarah Chen</h3>
+                                <p><strong>CTO & Co-Founder</strong></p>
+                                <p>Technical architect specializing in scalable systems and emerging technologies.</p>
+                            </article>
+                            <article class="team-member">
+                                <div class="team-photo">👨‍🎨</div>
+                                <h3>Marcus Rodriguez</h3>
+                                <p><strong>Head of Design</strong></p>
+                                <p>Creative director focused on user experience and beautiful, functional interfaces.</p>
+                            </article>
+                            <article class="team-member">
+                                <div class="team-photo">👩‍🔬</div>
+                                <h3>Dr. Emily Watson</h3>
+                                <p><strong>Head of Innovation</strong></p>
+                                <p>Research scientist driving AI and machine learning initiatives.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="values-section">
+                    <div class="container">
+                        <div class="section-title">
+                            <h2>Our Values</h2>
+                            <p>The principles that guide everything we do</p>
+                        </div>
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <h3>🚀 Innovation</h3>
+                                <ul>
+                                    <li>Embrace cutting-edge technologies</li>
+                                    <li>Encourage creative problem-solving</li>
+                                    <li>Continuously improve our processes</li>
+                                    <li>Stay ahead of industry trends</li>
+                                </ul>
+                            </div>
+                            <div class="value-item">
+                                <h3>🤝 Collaboration</h3>
+                                <ul>
+                                    <li>Work closely with clients as partners</li>
+                                    <li>Foster teamwork and knowledge sharing</li>
+                                    <li>Maintain transparent communication</li>
+                                    <li>Build long-term relationships</li>
+                                </ul>
+                            </div>
+                            <div class="value-item">
+                                <h3>⭐ Excellence</h3>
+                                <ul>
+                                    <li>Deliver high-quality solutions</li>
+                                    <li>Exceed client expectations</li>
+                                    <li>Maintain rigorous testing standards</li>
+                                    <li>Pursue continuous learning</li>
+                                </ul>
+                            </div>
+                            <div class="value-item">
+                                <h3>🌱 Sustainability</h3>
+                                <ul>
+                                    <li>Build environmentally conscious solutions</li>
+                                    <li>Optimize for energy efficiency</li>
+                                    <li>Support remote work initiatives</li>
+                                    <li>Contribute to community development</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Contact Page Content -->
+            <section id="contact-page" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <div class="container">
+                        <h1>Contact Us</h1>
+                        <p>Let's discuss your next project and bring your ideas to life</p>
+                    </div>
+                </div>
+
+                <div class="contact-page">
+                    <div class="container">
+                        <div class="contact-grid">
+                            <div class="contact-info">
+                                <h3>Get in Touch</h3>
+                                <address>
+                                    <strong>InnovateTech Solutions</strong><br>
+                                    123 Innovation Drive<br>
+                                    Tech Valley, CA 94025<br>
+                                    United States
+                                </address>
+                                
+                                <p>
+                                    <strong>Phone:</strong> <a href="tel:+1-555-123-4567">+1 (555) 123-4567</a><br>
+                                    <strong>Email:</strong> <a href="mailto:hello@innovatetech.com">hello@innovatetech.com</a><br>
+                                    <strong>Support:</strong> <a href="mailto:support@innovatetech.com">support@innovatetech.com</a>
+                                </p>
+
+                                <h4>Office Hours</h4>
+                                <table class="office-hours">
+                                    <thead>
+                                        <tr>
+                                            <th>Day</th>
+                                            <th>Hours</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Monday - Friday</td>
+                                            <td>9:00 AM - 6:00 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Saturday</td>
+                                            <td>10:00 AM - 4:00 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sunday</td>
+                                            <td>Closed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                                <fieldset class="form-fieldset">
+                                    <legend>Personal Information</legend>
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name *</label>
+                                        <input type="text" id="fullName" name="fullName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email Address *</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="company">Company/Organization</label>
+                                        <input type="text" id="company" name="company">
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="form-fieldset">
+                                    <legend>Inquiry Details</legend>
+                                    <div class="form-group">
+                                        <label for="service">Service Interest</label>
+                                        <select id="service" name="service">
+                                            <option value="">Select a service</option>
+                                            <option value="web-development">Web Development</option>
+                                            <option value="mobile-apps">Mobile Applications</option>
+                                            <option value="consulting">Digital Strategy Consulting</option>
+                                            <option value="cloud-solutions">Cloud Solutions</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Project Timeline</label>
+                                        <div class="radio-group">
+                                            <div class="radio-item">
+                                                <input type="radio" id="asap" name="timeline" value="asap">
+                                                <label for="asap">ASAP</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="1-3months" name="timeline" value="1-3months">
+                                                <label for="1-3months">1-3 months</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="3-6months" name="timeline" value="3-6months">
+                                                <label for="3-6months">3-6 months</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="6plus" name="timeline" value="6plus">
+                                                <label for="6plus">6+ months</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="budget">Budget Range</label>
+                                        <div class="range-group">
+                                            <input type="range" id="budget" name="budget" min="5000" max="100000" step="5000" value="25000" oninput="updateBudgetDisplay(this.value)">
+                                            <span id="budgetDisplay">$25,000</span>
+                                        </div>
+                                        <div class="range-labels">
+                                            <span>$5K</span>
+                                            <span>$100K+</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Project Type (Select all that apply)</label>
+                                        <div class="checkbox-group">
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="new-website" name="projectType" value="new-website">
+                                                <label for="new-website">New Website</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="redesign" name="projectType" value="redesign">
+                                                <label for="redesign">Website Redesign</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="mobile-app" name="projectType" value="mobile-app">
+                                                <label for="mobile-app">Mobile App</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="ecommerce" name="projectType" value="ecommerce">
+                                                <label for="ecommerce">E-commerce</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="other-project" name="projectType" value="other">
+                                                <label for="other-project">Other</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="form-fieldset">
+                                    <legend>Message</legend>
+                                    <div class="form-group">
+                                        <label for="description">Project Description *</label>
+                                        <textarea id="description" name="description" rows="4" required placeholder="Please describe your project requirements, goals, and any specific features you need..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fileUpload">Upload Requirements Document</label>
+                                        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.doc,.docx,.txt">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Preferred Contact Method</label>
+                                        <div class="radio-group">
+                                            <div class="radio-item">
+                                                <input type="radio" id="contact-email" name="contactMethod" value="email" checked>
+                                                <label for="contact-email">Email</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="contact-phone" name="contactMethod" value="phone">
+                                                <label for="contact-phone">Phone</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="contact-video" name="contactMethod" value="video">
+                                                <label for="contact-video">Video Call</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="form-fieldset">
+                                    <legend>Terms & Preferences</legend>
+                                    <div class="form-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="terms" name="terms" required>
+                                            <label for="terms">I agree to the Terms of Service and Privacy Policy *</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="newsletter" name="newsletter">
+                                            <label for="newsletter">Subscribe to our newsletter for updates and tech insights</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="form-buttons">
+                                    <button type="reset" class="btn btn-reset">Reset Form</button>
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>InnovateTech Solutions</h3>
+                        <p>Transforming businesses through innovative technology solutions. We're your trusted partner in digital transformation.</p>
+                        <div class="social-links">
+                            <a href="https://linkedin.com/company/innovatetech" aria-label="LinkedIn">💼</a>
+                            <a href="https://twitter.com/innovatetech" aria-label="Twitter">🐦</a>
+                            <a href="https://github.com/innovatetech" aria-label="GitHub">💻</a>
+                            <a href="https://facebook.com/innovatetech" aria-label="Facebook">📘</a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Services</h3>
+                        <p><a href="#services">Web Development</a></p>
+                        <p><a href="#services">Mobile Applications</a></p>
+                        <p><a href="#services">Digital Strategy</a></p>
+                        <p><a href="#services">Cloud Solutions</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <p><a href="#about-page">About Us</a></p>
+                        <p><a href="#about-page">Our Team</a></p>
+                        <p><a href="#about-page">Careers</a></p>
+                        <p><a href="#contact-page">Contact</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Info</h3>
+                        <p>📍 123 Innovation Drive<br>Tech Valley, CA 94025</p>
+                        <p>📞 <a href="tel:+1-555-123-4567">+1 (555) 123-4567</a></p>
+                        <p>✉️ <a href="mailto:hello@innovatetech.com">hello@innovatetech.com</a></p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 InnovateTech Solutions. All rights reserved. | Privacy Policy | Terms of Service</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation functionality
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all page content
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.style.display = 'none');
+            
+            // Show homepage content by default
+            const homeContent = document.getElementById('home');
+            const servicesContent = document.getElementById('services');
+            const aboutPreview = document.querySelector('.about-preview');
+            
+            if (pageId === 'home') {
+                homeContent.style.display = 'block';
+                servicesContent.style.display = 'block';
+                aboutPreview.style.display = 'block';
+            } else {
+                homeContent.style.display = 'none';
+                servicesContent.style.display = 'none';
+                aboutPreview.style.display = 'none';
+                
+                // Show specific page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.style.display = 'block';
+                }
+            }
+        }
+
+        // Add click handlers to navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    if (targetId === 'home' || targetId === 'services' || targetId === 'get-started') {
+                        showPage('home');
+                        if (targetId === 'services') {
+                            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+                        }
+                    } else {
+                        showPage(targetId);
+                    }
+                    
+                    // Close mobile menu
+                    document.getElementById('nav-menu').classList.remove('active');
+                });
+            });
+        });
+
+        // Budget range display update
+        function updateBudgetDisplay(value) {
+            const display = document.getElementById('budgetDisplay');
+            const formattedValue = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value);
+            display.textContent = formattedValue;
+        }
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Collect checkbox values
+            const projectTypes = [];
+            const checkboxes = document.querySelectorAll('input[name="projectType"]:checked');
+            checkboxes.forEach(cb => projectTypes.push(cb.value));
+            data.projectTypes = projectTypes;
+            
+            // Simulate form submission
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                event.target.reset();
+                updateBudgetDisplay(25000); // Reset budget display
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#') && href !== '#') {
+                        const target = document.querySelector(href);
+                        if (target && target.offsetParent !== null) { // Check if element is visible
+                            e.preventDefault();
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Add loading animation for service cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            const cards = document.querySelectorAll('.service-card, .team-member, .value-item');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Form validation enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            const requiredInputs = document.querySelectorAll('input[required], textarea[required]');
+            requiredInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() === '') {
+                        this.style.borderColor = '#dc3545';
+                    } else {
+                        this.style.borderColor = '#28a745';
+                    }
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c467a701f2ff76',t:'MTc1NzM5Njk5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
