@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greeting Component Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-fuchsia-600 text-slate-800 antialiased">
+  <main class="flex items-center justify-center min-h-screen p-6">
+    <div class="w-full max-w-3xl">
+      <section class="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
+        <header class="px-8 pt-8 pb-6 bg-white">
+          <div class="inline-flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-fuchsia-500 shadow-lg flex items-center justify-center text-white font-extrabold">Hi</div>
+            <div>
+              <h1 class="text-2xl font-extrabold tracking-tight text-slate-900">Greeting Component</h1>
+              <p class="text-sm text-slate-600">Shows “Hello, {name}!” or “Hello, Guest!” when no name is provided.</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="px-8 py-6 grid grid-cols-1 lg:grid-cols-2 gap-6 bg-gradient-to-b from-white to-white/70">
+          <!-- Examples -->
+          <div class="space-y-4">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Examples</h2>
+
+            <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-xs font-medium text-slate-500 mb-2">With name prop</p>
+              <greeting-card name="Alice"></greeting-card>
+              <p class="text-xs text-slate-500 mt-3">Example: &lt;Greeting name="Alice" /&gt; → Hello, Alice!</p>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-xs font-medium text-slate-500 mb-2">Without name prop</p>
+              <greeting-card></greeting-card>
+              <p class="text-xs text-slate-500 mt-3">Example: &lt;Greeting /&gt; → Hello, Guest!</p>
+            </div>
+          </div>
+
+          <!-- Live Playground -->
+          <div class="space-y-4">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Playground</h2>
+            <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <form id="playgroundForm" class="space-y-4" autocomplete="off">
+                <label class="block">
+                  <span class="block text-sm font-medium text-slate-700 mb-1">Enter a name</span>
+                  <input id="nameInput" type="text" placeholder="Type a name…"
+                         class="w-full rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 px-3 py-2 shadow-sm"
+                         aria-label="Name input">
+                </label>
+                <div class="flex flex-wrap items-center gap-3">
+                  <button type="submit"
+                          class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-white font-semibold shadow hover:bg-indigo-700 active:scale-[0.99] transition">
+                    Set name
+                  </button>
+                  <button type="button" id="clearBtn"
+                          class="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-slate-800 font-semibold shadow hover:bg-slate-200 active:scale-[0.99] transition">
+                    Clear (use Guest)
+                  </button>
+                </div>
+              </form>
+
+              <div class="mt-5 rounded-lg bg-gradient-to-tr from-indigo-50 to-fuchsia-50 border border-indigo-100 p-4">
+                <p class="text-xs font-medium text-slate-500 mb-2">Live output</p>
+                <greeting-card id="liveGreeting" class="block"></greeting-card>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="px-8 py-5 bg-white border-t border-slate-200">
+          <p class="text-sm text-slate-600">
+            Tip: Leave the field empty or click “Clear” to see the default “Guest” greeting.
+          </p>
+        </footer>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Small escape helper to keep things safe
+    function escapeHTML(str) {
+      return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    // Greeting component as a lightweight Web Component
+    class GreetingCard extends HTMLElement {
+      static get observedAttributes() { return ['name']; }
+
+      connectedCallback() { this.render(); }
+      attributeChangedCallback() { this.render(); }
+
+      render() {
+        const rawName = this.getAttribute('name');
+        const name = rawName && rawName.trim().length ? rawName.trim() : 'Guest';
+        const safeName = escapeHTML(name);
+
+        // Render beautifully with Tailwind classes
+        this.innerHTML = `
+          <div class="inline-flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-indigo-500 to-fuchsia-500 text-white font-bold flex items-center justify-center">👋</div>
+            <p class="text-lg font-semibold text-slate-900">Hello, <span class="text-indigo-600">${safeName}</span>!</p>
+          </div>
+        `;
+      }
+    }
+    customElements.define('greeting-card', GreetingCard);
+
+    // Playground interactions
+    const form = document.getElementById('playgroundForm');
+    const input = document.getElementById('nameInput');
+    const live = document.getElementById('liveGreeting');
+    const clearBtn = document.getElementById('clearBtn');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // stay on the page
+      const value = input.value.trim();
+      if (value) {
+        live.setAttribute('name', value);
+      } else {
+        live.removeAttribute('name'); // will show Guest
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      live.removeAttribute('name'); // Default to Guest
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9838007ff7d38572',t:'MTc1ODYwOTExNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
