@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Counter App — useState Practice</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Note: Using custom CSS here (not Tailwind) to ensure full compatibility in this environment -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="wrap">
+    <div class="card" role="region" aria-label="Counter App">
+      <div class="head">
+        <div class="title">Counter App</div>
+        <div class="subtitle">Practice useState and conditional rendering</div>
+      </div>
+
+      <div class="content">
+        <div id="root" aria-live="polite"></div>
+
+        <div class="hint">Try going below zero to see the warning appear.</div>
+        <div class="footer">
+          <div class="chip">useState</div>
+          <div class="chip">Conditional Rendering</div>
+          <div class="chip">Accessible & Responsive</div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div id="root"></div>
+    <script type="module" src="/src/index.jsx"></script>
+    <script type="module" src="/src/index.css"></script>
+  </body>
+</html>
